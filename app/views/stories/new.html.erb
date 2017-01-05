@@ -1,0 +1,15 @@
+<div class="container">
+<div class="row">
+
+
+<h1 class="text-center">A new story<small> by <%= current_user.email%></small></h1>
+
+
+
+
+
+<%= render 'form' %><br>
+
+<%= link_to 'Back', stories_path, class: "btn btn-primary" %>
+</div>
+</div>

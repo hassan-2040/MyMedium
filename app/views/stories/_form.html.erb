@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+      <%= simple_form_for(@story, class: "form-horizontal") do |f| %>
+      <%= f.error_notification %>
+
+      <div class="jumbotron">
+        <div class="container col-md-4 col-md-offset-4">
+            <%= f.input :title, label: false, placeholder: "Title:", class: "form-control" %>
+        </div>
+
+            <%= f.text_area :body, label: false, placeholder: "Content", class: "form-control", rows: 15 %>
+      </div>
+
+      <div class="form-group">
+        <%= f.button :submit, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
