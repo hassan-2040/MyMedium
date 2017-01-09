@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
-  resources :stories
-  root to: 'pages#home'
+  resources :stories do
+    collection do
+      get 'my_stories' => 'stories#my_stories'
+      get 'bookmarked_stories' => 'stories#bookmarked_stories'
+      get 'liked_stories' => 'stories#liked_stories'
+    end
+    resource :like, only: [:create, :destroy]
+    resource :bookmark, only: [:create, :destroy]
 
+
+  end
+  root to: 'pages#home'
   devise_for :users
+  resources :users, only: [:show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

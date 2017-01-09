@@ -1,0 +1,6 @@
+
+<% if current_user && current_user.likes.where(story_id: @story.id).count > 0 %>
+<%= link_to "Unlike", story_like_path(@story), method: :delete, class: "btn btn-success"%>
+<%else%>
+<%= link_to "Like", story_like_path(@story), method: :post, class: "btn btn-success"%>
+<%end%>

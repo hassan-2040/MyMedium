@@ -5,4 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
          has_many :stories, dependent: :destroy
+         has_many :likes, dependent: :destroy
+         has_many :bookmarks, dependent: :destroy
+
+         def likes?(story)
+           story.likes.where(user_id: id).any?
+         end
+         def bookmarks?(story)
+           story.bookmarks.where(user_id: id).any?
+         end
 end

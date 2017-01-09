@@ -1,0 +1,6 @@
+
+<% if current_user && current_user.bookmarks.where(story_id: @story.id).count > 0 %>
+<%= link_to "Remove Bookmark", story_bookmark_path(@story), method: :delete, class: "btn btn-warning"%>
+<%else%>
+<%= link_to "Add Bookmark", story_bookmark_path(@story), method: :post, class: "btn btn-success"%>
+<%end%>

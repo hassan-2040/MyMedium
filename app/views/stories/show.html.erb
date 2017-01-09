@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1 class="text-center">A masterpiece <small>by <%= @story.user.email %></small></h1>
+    <h1 class="text-center">A masterpiece <small>by <%= @story.user.name %></small></h1>
 
     <div class="jumbotron">
 
@@ -16,12 +16,22 @@
       <%= @story.body %>
     </p>
 
-
-
-
-
    </div>
-   <%= link_to 'Edit', edit_story_path(@story), class: "btn btn-primary" %>
-   <%= link_to 'Back', stories_path, class: "btn btn-primary" %>
+
+
+   <div class="container">
+     <div class="row">
+
+       <p><%= render partial: "likes" %><%=@story.likes.count%></p>
+       <p><%= render partial: "bookmarks" %>
+       <% if current_user == @story.user%>
+       <%= link_to 'Edit', edit_story_path(@story), class: "btn btn-primary" %>
+       <%end%>
+       <%= link_to 'Back', stories_path, class: "btn btn-primary" %>
+     </div>
+   </div>
+
+
+
   </div>
 </div>
