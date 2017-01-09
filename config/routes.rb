@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   end
   root to: 'pages#home'
   devise_for :users
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index, :user_stories] do
+    member do
+      post :follow
+      delete :unfollow
+    end
+    
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

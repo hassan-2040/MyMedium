@@ -5,13 +5,13 @@
 <% @stories.each do |story|%>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"><em><%= story.title %></em><small class="pull-right" style="color:#fff"><b> by <%= story.user.name %></small></b></h3>
+    <h3 class="panel-title"><em><%= story.title %></em><small class="pull-right" style="color:#fff"><b> by <%= link_to story.user.name, user_path(story.user.id), style: "color: white;" %></small></b></h3>
   </div>
   <div class="panel-body">
-    <%= story.body.truncate_words(15) %>
+    <p><%= story.body.truncate_words(15) %><em>...(Click Show to read complete story)</em></p>
   </div>
   <div class="panel-footer">
-    
+
       <%= link_to 'Show', story, class: "btn btn-info" %>
       <% if current_user == story.user%>
       <%= link_to 'Edit', edit_story_path(story), class: "btn btn-info" %>

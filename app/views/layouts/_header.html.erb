@@ -19,6 +19,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Write a Story", new_story_path %></li>
         <li><%= link_to "Stories", stories_path%></li>
+        <li><%= link_to "Writers", users_path %></li>
         <% unless current_user %>
         <li><%= link_to "Sign in/ Sign up", new_user_session_path %></li>
         <%end%>

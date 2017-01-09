@@ -4,8 +4,33 @@
     <h1 class="text-center"><%= @user.name %><small> our talented writer</small></h1>
     <h3 class="text-center"><%= @user.email%></h3>
     <div class="col-md-4 col-md-offset-5">
+        <% if current_user != @user %>
+        <%= link_to "Follow #{@user.name}", follow_user_path, class: "btn btn-primary btn-lg" %>
+        <%else%>
         <%= link_to "Edit My Profile", edit_user_registration_path, class: "btn btn-primary btn-lg" %>
+        <%end%>
+    </div><br><br><br>
+
+    <% @user.stories.each do |story|%>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><em><%= story.title %></em><small class="pull-right" style="color:#fff"><b> by <%= link_to story.user.name, user_path(story.user.id) %></small></b></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= story.body.truncate_words(15) %><em>...(Click Show to read complete story)</em></p>
+      </div>
+      <div class="panel-footer">
+
+          <%= link_to 'Show', story, class: "btn btn-info" %>
+          <% if current_user == story.user%>
+          <%= link_to 'Edit', edit_story_path(story), class: "btn btn-info" %>
+          <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %>
+          <%end%>
+          <p class="pull-right"><%= time_ago_in_words(story.created_at)  %> ago </p>
+      </div>
     </div>
+      <%end%>
+
 
   </div>
 </div>
