@@ -5,11 +5,11 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.all.order(created_at: :desc)
   end
 
   def my_stories
-    @my_stories = current_user.stories.all
+    @my_stories = current_user.stories.all.order(created_at: :desc)
 
     respond_to do |format|
       format.html { render template: "stories/my_stories"}
@@ -22,6 +22,7 @@ class StoriesController < ApplicationController
     current_user.bookmarks.each do |bookmark|
       @stories.push(bookmark.story)
     end
+
     respond_to do |format|
       format.html { render template: "stories/bookmarked_stories"}
       format.json { render template: "stories/index", status: :ok  }
@@ -42,7 +43,7 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
-
+    @comments = Comment.where(story_id: @story).order("created_at DESC")
   end
 
   # GET /stories/new
@@ -97,6 +98,10 @@ class StoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

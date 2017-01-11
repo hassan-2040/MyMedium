@@ -8,7 +8,13 @@
         <% @users.each do |user| %>
         <div class="col-md-8 col-md-offset-2">
           <ul class="list-group">
-            <li class="list-group-item justify-content-between"><%= link_to user.name, user_path(user.id) %><span class="badge badge-default badge-pill"><%=user.stories.count%></span></li>
+            <li class="list-group-item justify-content-between"><strong><%= link_to user.name, user_path(user.id) %></strong><span class="badge badge-default badge-pill"><%=user.stories.count%></span>
+              <% if current_user.following_followships.find_by(following: user).nil? %>
+                <%= link_to "Follow", follow_user_path(user), class: "btn btn-primary btn-sm", method: :post %>
+                <% else %>
+                <%= link_to "Unfollow", unfollow_user_path(user), class: "btn btn-primary btn-sm", method: :delete %>
+                <% end %>
+            </li>
           </ul>
         </div>
 

@@ -4,12 +4,15 @@ Rails.application.routes.draw do
       get 'my_stories' => 'stories#my_stories'
       get 'bookmarked_stories' => 'stories#bookmarked_stories'
       get 'liked_stories' => 'stories#liked_stories'
+
     end
     resource :like, only: [:create, :destroy]
     resource :bookmark, only: [:create, :destroy]
-
-
+    resources :comments
   end
+
+
+
   root to: 'pages#home'
   devise_for :users
   resources :users, only: [:show, :index, :user_stories] do
@@ -17,7 +20,7 @@ Rails.application.routes.draw do
       post :follow
       delete :unfollow
     end
-    
+
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

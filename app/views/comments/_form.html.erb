@@ -1,0 +1,16 @@
+
+
+
+<%= simple_form_for([@story, @story.comments.build]) do |f| %>
+
+
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="input-group">
+    <%= f.text_area :body, class: "form-control", type: "text", placeholder: "Add your comment" %>
+    <span class="input-group-btn">
+       <%= f.button :submit, class: "btn btn-primary" %>
+    </span>
+  </div>
+    <br><br><br><br><br><br><br><br>
+    <!-- #<%= link_to "Add Comment", new_story_comment_path(@story), class: "btn btn-primary btn-lg" %> -->
+<% end %>

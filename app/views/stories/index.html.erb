@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
 
+
+<div class="row">
 <h1 class="text-center"><b>Stories</b> <small>by our wonderful writers</small></h1>
+<%= link_to 'New Story', new_story_path, class: "btn btn-primary pull-right" %>
 
+</div>
+</div>
+<br>
 <% @stories.each do |story|%>
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -15,7 +22,7 @@
       <%= link_to 'Show', story, class: "btn btn-info" %>
       <% if current_user == story.user%>
       <%= link_to 'Edit', edit_story_path(story), class: "btn btn-info" %>
-      <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %>
+      <%= link_to 'Delete', story, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %>
       <%end%>
       <p class="pull-right"><%= time_ago_in_words(story.created_at)  %> ago </p>
   </div>
@@ -25,4 +32,6 @@
 
 
 
-<%= link_to 'New Story', new_story_path, class: "btn btn-primary" %>
+
+
+<br><br>
